@@ -9,6 +9,22 @@ $(document).ready(function(){
   // this is where we jquery
   //var keyData = 'ourKey'; // going to need to make this dynamic?
 
+  // SNACK LIST
+  var snacks = ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  var snackList = $(".list-snacks");
+  var snackParent = snackList.parent();
+
+  snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
+    for (var i = 0; i < snacks.length; i++){
+        $(this).append(`<li> ${snacks[i]} </li>`);
+          if (i === snacks.length - 1){
+            $(this).appendTo(snackParent);
+        }
+    }
+ });
+
+
+
 
   $('.btn-add').on('click', function(e){
     console.log(e);
@@ -44,5 +60,7 @@ $(document).ready(function(){
     localStorage.clear();
     $('.container-data').text('');
   });
+
+  $('container-data').toArray(snacks)
 
 });
