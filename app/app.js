@@ -23,6 +23,13 @@ $(document).ready(function(){
     }
  });
 
+ localStorage.setItem("snacks", JSON.stringify(snacks)); 
+
+
+$(".btn-snack").on('click', function() {
+  
+
+})
 
 
 
