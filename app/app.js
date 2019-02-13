@@ -16,26 +16,18 @@ $(document).ready(function(){
   var snackContainer = $('.snack-container');
 
   localStorage.setItem('snacks', JSON.stringify(snacks)); 
-  var snackData = JSON.parse(window.localStorage.getItem('snacks')) 
+  var snackData = JSON.parse(localStorage.getItem('snacks')) 
 
 
   $('.btn-snack').on('click', function(e){ 
-     e.preventDefault();
-     var snackValue = $('.input-snack').val();
-     snacks.push(snackValue);
-    // write to db
+    e.preventDefault();
+    // snack value
+    var snackValue = $('.input-snack').val(); 
+    // add new value to snack array
+    snacks.push(snackValue); 
     localStorage.setItem('snacks', JSON.stringify(snacks));
-    // add value to html
-    $('.list-snacks').html(`<li>${snackValue}</liv>`);
+    $('.list-snacks').append(`<li>${snackValue}</liv>`);
     $('.input-snack').val('');
-    // read from db
-    // var displayText = `${snacks} | ${localStorage.getItem(snacks)}`;
-    // this only displays the last one? might want to switch to html
-    // and append a div
-    // <div class="display-data-item" data-keyValue="keyData">valueData</div>
-    // if you use backticks ` you can use ${templateLiterals}
-    // TODO make this vars make sense across the app
-    
 
   });
 
@@ -43,7 +35,7 @@ $(document).ready(function(){
 
   var existingSnacks = snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
     for (var i = 0; i < snacks.length; i++){
-        $(this).append(`<li>${snacks[i]}</li>`).appendTo(snackParent);
+        $(this).append(`<li>${snacks[i]}</li>`);
           if (i === snacks.length - 1){
             $(this).appendTo(snackParent);
         }
