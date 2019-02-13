@@ -26,7 +26,7 @@ $(document).ready(function(){
     // write to db
     localStorage.setItem('snacks', JSON.stringify(snacks));
     // add value to html
-    $('.list-snacks').appendTo(`<li>${snackValue}</liv>`);
+    $('.list-snacks').html(`<li>${snackValue}</liv>`);
     $('.input-snack').val('');
     // read from db
     // var displayText = `${snacks} | ${localStorage.getItem(snacks)}`;
@@ -51,44 +51,6 @@ $(document).ready(function(){
     }
   });
   
-
-
-  // $(".btn-snack").on('click', function(e) {
-  //   snacks.push(snackValue)
-  //   localstorage.setItem('snacks', JSON.stringify(snackValue));
-  //   var displayText = localStorage.getItem(snackValue);
-  //   $('.list-snacks').html(`<li>${snackValue}</liv>`);
-  //   $('.input-snack').val('');
-    
-
-  // })
-
-   $('.btn-snack').on('click', function(e){ 
-     e.preventDefault();
-     var snackValue = $('.input-snack').val();
-     snacks.push(snackValue);
-    // write to db
-    localStorage.setItem('snacks', JSON.stringify(snacks));
-    // read from db
-    // var displayText = `${snacks} | ${localStorage.getItem(snacks)}`;
-    // // this only displays the last one? might want to switch to html
-    // // and append a div
-    // // <div class="display-data-item" data-keyValue="keyData">valueData</div>
-    // // if you use backticks ` you can use ${templateLiterals}
-    // // TODO make this vars make sense across the app
-    // $('.list-snacks').html(`<li>${snackValue}</liv>`).appendTo(snackParent);
-    // $('.input-snack').val('');
-  
-
-  });
-
-
-
-
-
-
-
-
 
 
 
