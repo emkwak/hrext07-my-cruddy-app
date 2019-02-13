@@ -36,13 +36,12 @@ $(document).ready(function(){
     // if you use backticks ` you can use ${templateLiterals}
     // TODO make this vars make sense across the app
     
-  
 
   });
 
 
 
-  snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
+  var existingSnacks = snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
     for (var i = 0; i < snacks.length; i++){
         $(this).append(`<li>${snacks[i]}</li>`).appendTo(snackParent);
           if (i === snacks.length - 1){
