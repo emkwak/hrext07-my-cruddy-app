@@ -10,26 +10,86 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
 
   // SNACK LIST
-  var snacks = ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
-  var snackList = $(".list-snacks");
+  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
+  var snackContainer = $('.snack-container');
+
+  localStorage.setItem('snacks', JSON.stringify(snacks)); 
+  var snackData = JSON.parse(window.localStorage.getItem('snacks')) 
+
+
+  $('.btn-snack').on('click', function(e){ 
+     e.preventDefault();
+     var snackValue = $('.input-snack').val();
+     snacks.push(snackValue);
+    // write to db
+    localStorage.setItem('snacks', JSON.stringify(snacks));
+    // add value to html
+    $('.list-snacks').appendTo(`<li>${snackValue}</liv>`);
+    $('.input-snack').val('');
+    // read from db
+    // var displayText = `${snacks} | ${localStorage.getItem(snacks)}`;
+    // this only displays the last one? might want to switch to html
+    // and append a div
+    // <div class="display-data-item" data-keyValue="keyData">valueData</div>
+    // if you use backticks ` you can use ${templateLiterals}
+    // TODO make this vars make sense across the app
+    
+  
+
+  });
+
+
 
   snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
     for (var i = 0; i < snacks.length; i++){
-        $(this).append(`<li> ${snacks[i]} </li>`);
+        $(this).append(`<li>${snacks[i]}</li>`).appendTo(snackParent);
           if (i === snacks.length - 1){
             $(this).appendTo(snackParent);
         }
     }
- });
-
- localStorage.setItem("snacks", JSON.stringify(snacks)); 
-
-
-$(".btn-snack").on('click', function() {
+  });
   
 
-})
+
+  // $(".btn-snack").on('click', function(e) {
+  //   snacks.push(snackValue)
+  //   localstorage.setItem('snacks', JSON.stringify(snackValue));
+  //   var displayText = localStorage.getItem(snackValue);
+  //   $('.list-snacks').html(`<li>${snackValue}</liv>`);
+  //   $('.input-snack').val('');
+    
+
+  // })
+
+   $('.btn-snack').on('click', function(e){ 
+     e.preventDefault();
+     var snackValue = $('.input-snack').val();
+     snacks.push(snackValue);
+    // write to db
+    localStorage.setItem('snacks', JSON.stringify(snacks));
+    // read from db
+    // var displayText = `${snacks} | ${localStorage.getItem(snacks)}`;
+    // // this only displays the last one? might want to switch to html
+    // // and append a div
+    // // <div class="display-data-item" data-keyValue="keyData">valueData</div>
+    // // if you use backticks ` you can use ${templateLiterals}
+    // // TODO make this vars make sense across the app
+    // $('.list-snacks').html(`<li>${snackValue}</liv>`).appendTo(snackParent);
+    // $('.input-snack').val('');
+  
+
+  });
+
+
+
+
+
+
+
+
+
 
 
 
