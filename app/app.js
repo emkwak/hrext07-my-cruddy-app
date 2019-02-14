@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 
 
- $('.snack-container').on('click', '.display-snack-item', function(e){
+ $('.snack-container').on('dblclick', '.display-snack-item', function(e){
   console.log(e.currentTarget.dataset.snackitem)
    // var snackData =    
    // alert( "Item deleted" );
