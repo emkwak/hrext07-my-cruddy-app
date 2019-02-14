@@ -10,7 +10,8 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
  
   //SNACK
-  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  var snacks = ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  // localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : 
   var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
 
@@ -20,7 +21,7 @@ $(document).ready(function(){
   // SNACK SUBMIT BUTTON
   $('.btn-snack').on('click', function(e){
     console.log(e);
-    event.preventDefault();
+    e.preventDefault();
     // snack value
     var snackValue = $('.input-snack').val(); 
     // add new value to snack array
@@ -31,7 +32,6 @@ $(document).ready(function(){
     $('.input-snack').val('');
 
   });
-
 
 
 
@@ -47,10 +47,10 @@ $(document).ready(function(){
 
 
 
- $('.snack-container').dblclick('.data-snackItem', function(e){
-  console.log(e.currentTarget.dataset.snackItem)
+ $('.snack-container').on('click', '.display-snack-item', function(e){
+  console.log(e.currentTarget.dataset.snackitem)
    // var snackData =    
-   alert( "Item deleted" );
+   // alert( "Item deleted" );
 
   });
 
