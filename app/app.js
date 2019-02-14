@@ -52,19 +52,15 @@ $(document).ready(function(){
 
  // DELETE ITEMS 
  $('.list-snacks').on('dblclick', '.display-snack-item', function(e){
-  console.log(e)
+   console.log(e)
    var snackData = e.currentTarget.dataset.snackitem;
-   // var storedSnack = JSON.parse(localStorage.getItem('snacks')); 
-   // storedSnack.splice(this, 1)
    for (var i = 0; i < storedSnack.length; i++) {
      if (storedSnack[i] === snackData) {
        storedSnack.splice(i, 1);
      } 
     }
    localStorage.setItem('snacks', JSON.stringify(storedSnack));
-   // $('.list-snacks').text('');
-
-
+   $(`li:contains('${snackData}')`).hide()
   });
 
 
