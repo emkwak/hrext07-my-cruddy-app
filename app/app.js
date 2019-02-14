@@ -60,7 +60,7 @@ $(document).ready(function(){
      } 
     }
    localStorage.setItem('snacks', JSON.stringify(storedSnack));
-   $(`li:contains('${snackData}')`).hide()
+   $(`li:contains('${snackData}')`).remove()
   });
 
 
