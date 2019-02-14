@@ -10,7 +10,7 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
  
   //SNACK
-  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Milk', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
   var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
 
@@ -48,6 +48,8 @@ $(document).ready(function(){
   });
 
 
+  
+
 
 
  // DELETE ITEMS 
@@ -60,46 +62,80 @@ $(document).ready(function(){
      } 
     }
    localStorage.setItem('snacks', JSON.stringify(storedSnack));
-   $(`li:contains('${snackData}')`).remove()
+   $(`li:contains('${snackData}')`).remove() // contains is removing items with the same name and not just removing that one item (BUG)
+   // $( ".list-snacks" ).data(`${snackData}`).remove();
+ });
+
+ 
+
+ // // UPDATE ITEM
+ // $('.list-snacks').on('click', '.display-snack-item', function(e) {
+ //   console.log(e)
+ //   var snackData = e.currentTarget.dataset.snackitem;
+ //   for (var i = 0; i < storedSnack.length; i++) {
+ //     if (storedSnack[i] === snackData) {
+ //       storedSnack.splice(i, 1);
+ //     } 
+ //    }
+ //   localStorage.setItem('snacks', JSON.stringify(storedSnack));
+ //   $('list-snacks').val(`${snackData}`, 'new value');
+ //   // $(`li:contains('${snackData}')`).remove()
+
+ // });
+
+ 
+
+
+ // GET ITEM BY MATCHING INPUT VALUE
+  $('.input-snack-search').on('keyup',function() {
+    var snackValue = $(this).val().toLowerCase();
+    $('.display-snack-item').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(snackValue) > -1)
+    })
   });
 
 
+}); 
 
 
-  $('.btn-add').on('click', function(e){
-    console.log(e);
-    var keyData = $('.input-key').val();
-    var valueData = $('.input-value').val();
-    // write to db
-    localStorage.setItem(keyData, valueData);
-    // read from db
-    var displayText = keyData + ' | ' + localStorage.getItem(keyData);
-    // this only displays the last one? might want to switch to html
-    // and append a div
-    // <div class="display-data-item" data-keyValue="keyData">valueData</div>
-    // if you use backticks ` you can use ${templateLiterals}
-    // TODO make this vars make sense across the app
-    $('.container-data').html('<div class="display-data-item" data-keyValue="'+ keyData +'">'+valueData+'</div>');
-    $('.input-key').val('');
-    $('.input-value').val('');
-  });
 
 
-  // update db
-    // need to expand when  more than 1 item is added
+// **********************************************************************
 
-  // delete item
-  $('.container-data').on('click', '.display-data-item', function(e){
-    console.log(e.currentTarget.dataset.keyvalue);
-    var keyData = e.currentTarget.dataset.keyvalue;
-    localStorage.removeItem(keyData);
-    $('.container-data').text('');
-  });
-  // delete all?
-  $('.btn-clear').click(function(){
-    localStorage.clear();
-    $('.container-data').text('');
-  });
+  // $('.btn-add').on('click', function(e){
+  //   console.log(e);
+  //   var keyData = $('.input-key').val();
+  //   var valueData = $('.input-value').val();
+  //   // write to db
+  //   localStorage.setItem(keyData, valueData);
+  //   // read from db
+  //   var displayText = keyData + ' | ' + localStorage.getItem(keyData);
+  //   // this only displays the last one? might want to switch to html
+  //   // and append a div
+  //   // <div class="display-data-item" data-keyValue="keyData">valueData</div>
+  //   // if you use backticks ` you can use ${templateLiterals}
+  //   // TODO make this vars make sense across the app
+  //   $('.container-data').html('<div class="display-data-item" data-keyValue="'+ keyData +'">'+valueData+'</div>');
+  //   $('.input-key').val('');
+  //   $('.input-value').val('');
+  // });
 
 
-});
+  // // update db
+  //   // need to expand when  more than 1 item is added
+
+  // // delete item
+  // $('.container-data').on('click', '.display-data-item', function(e){
+  //   console.log(e.currentTarget.dataset.keyvalue);
+  //   var keyData = e.currentTarget.dataset.keyvalue;
+  //   localStorage.removeItem(keyData);
+  //   $('.container-data').text('');
+  // });
+  // // delete all?
+  // $('.btn-clear').click(function(){
+  //   localStorage.clear();
+  //   $('.container-data').text('');
+  // });
+
+
+// });
