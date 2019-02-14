@@ -10,13 +10,27 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
  
   //SNACK
-  var snacks = ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
-  // localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : 
+  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
   var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
 
   localStorage.setItem('snacks', JSON.stringify(snacks)); 
-  // var snackData = JSON.parse(localStorage.getItem('snacks')) 
+  var storedSnack = JSON.parse(localStorage.getItem('snacks')); 
+
+
+
+
+  // ITERATE - EXISTING SNACKS 
+  snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
+    for (var i = 0; i < snacks.length; i++){
+        $(this).append(`<li class="display-snack-item" data-snackItem='${snacks[i]}'>${snacks[i]}</li>`);
+          if (i === snacks.length - 1){
+            $(this).appendTo(snackParent);
+        }
+    }
+  });
+
+
 
   // SNACK SUBMIT BUTTON
   $('.btn-snack').on('click', function(e){
@@ -35,24 +49,21 @@ $(document).ready(function(){
 
 
 
-  // ITERATE - EXISTING SNACKS 
-  snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
-    for (var i = 0; i < snacks.length; i++){
-        $(this).append(`<li class="display-snack-item" data-snackItem='${snacks[i]}'>${snacks[i]}</li>`);
-          if (i === snacks.length - 1){
-            $(this).appendTo(snackParent);
-        }
-    }
-  });
 
-
-
- $('.snack-container').on('dblclick', '.display-snack-item', function(e){
-  console.log(e.currentTarget.dataset.snackitem)
-   // var snackData =    
-   // alert( "Item deleted" );
+ // DELETE ITEMS 
+ $('.list-snacks').on('dblclick', '.display-snack-item', function(e){
+   var snackData = e.currentTarget.dataset.snackitem;
+   // var storedSnack = JSON.parse(localStorage.getItem('snacks')); 
+   storedSnack.splice(this, 1)
+   localStorage.setItem('snacks', JSON.stringify(storedSnack));
+   // $('.list-snacks').text('');
 
   });
+
+
+
+
+
 
 
 
@@ -102,6 +113,5 @@ $(document).ready(function(){
     $('.container-data').text('');
   });
 
-  $('container-data').toArray(snacks)
 
 });
