@@ -15,27 +15,30 @@ $(document).ready(function(){
   var snackParent = snackList.parent();
 
   localStorage.setItem('snacks', JSON.stringify(snacks)); 
-  var snackData = JSON.parse(localStorage.getItem('snacks')) 
+  // var snackData = JSON.parse(localStorage.getItem('snacks')) 
 
   // SNACK SUBMIT BUTTON
   $('.btn-snack').on('click', function(e){
-    e.preventDefault();
+    console.log(e);
+    event.preventDefault();
     // snack value
     var snackValue = $('.input-snack').val(); 
     // add new value to snack array
     snacks.push(snackValue); 
     localStorage.setItem('snacks', JSON.stringify(snacks));
     // var displayText = `'snacks | ${localStorage.getItem('snacks')}`;
-    $('.list-snacks').append(`<li>${snackValue}</liv>`);
+    $('.list-snacks').append(`<li class="display-snack-item" data-snackItem='${snacks[snacks.length-1]}'>${snackValue}</liv>`);
     $('.input-snack').val('');
 
   });
 
 
+
+
   // ITERATE - EXISTING SNACKS 
   snackList.detach().each(function(index){ //.detach() method is the same as .remove(), except that .detach() keeps all jQuery data associated with the removed elements. This method is useful when removed elements are to be reinserted into the DOM at a later time.
     for (var i = 0; i < snacks.length; i++){
-        $(this).append(`<li>${snacks[i]}</li>`);
+        $(this).append(`<li class="display-snack-item" data-snackItem='${snacks[i]}'>${snacks[i]}</li>`);
           if (i === snacks.length - 1){
             $(this).appendTo(snackParent);
         }
@@ -44,12 +47,21 @@ $(document).ready(function(){
 
 
 
- $('.snack-container').dblclick(function(){
-     alert( "Item deleted" );
+ $('.snack-container').dblclick('.data-snackItem', function(e){
+  console.log(e.currentTarget.dataset.snackItem)
+   // var snackData =    
+   alert( "Item deleted" );
+
   });
 
 
 
+//  $('.container-data').on('click', '.display-data-item', function(e){
+//     console.log(e.currentTarget.dataset.keyvalue);
+//     var keyData = e.currentTarget.dataset.keyvalue;
+//     localStorage.removeItem(keyData);
+//     $('.container-data').text('');
+//   });
   
 // });
 
