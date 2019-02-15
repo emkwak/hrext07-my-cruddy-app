@@ -10,7 +10,7 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
  
   //SNACK
-  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisp', 'Dried Fruit and Nuts', 'Cookie Butter', 'Mini Churros', 'Sweet Plantain Chips', 'Soft Baked Snickerdoodle Cookies', 'Popcorn With Herbs and Spices', 'Milk', 'Green Tea Mochi', 'Vegan Banana Bread'];
+  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisp', 'Dried Fruit and Nuts', 'Cookie Butter', 'Mini Churros', 'Greek Yogurt', 'Sweet Plantain Chips', 'Soft Baked Snickerdoodle Cookies', 'Popcorn With Herbs and Spices', 'Milk', 'Green Tea Mochi', 'Vegan Banana Bread'];
   var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
 
@@ -49,10 +49,9 @@ $(document).ready(function(){
     // var displayText = `'snacks | ${localStorage.getItem('snacks')}`;
     $('.list-snacks').append(`<li class="display-snack-item" data-snackItem='${snacks[snacks.length-1]}'>${snackValue}</liv>`);
     $('.input-snack').val('');
-   
-
   });
-  // Empty input values are being added. Need to figure out how to restrict that
+  // Need to restrict "spaces" being added as a input, but not restrict when spaces are added with actual items that are being submitted
+  
 
 
 
@@ -69,12 +68,14 @@ $(document).ready(function(){
    localStorage.setItem('snacks', JSON.stringify(storedSnack));
    $(this).remove();
  });
+ // When an item is deleted all new items that were added in local storage gets removed as well
 
- 
+
+
 
  // // UPDATE ITEM
+   //Use localStorage.setItem
  
- // });
 
  
 
