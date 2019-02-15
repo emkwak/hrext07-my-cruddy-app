@@ -36,6 +36,11 @@ $(document).ready(function(){
   $('.btn-snack').on('click', function(e){
     console.log(e);
     e.preventDefault();
+    
+    if($('.input-snack').val() === ''){
+      return false;
+   }
+
     // snack value
     var snackValue = $('.input-snack').val(); 
     // add new value to snack array
@@ -44,11 +49,11 @@ $(document).ready(function(){
     // var displayText = `'snacks | ${localStorage.getItem('snacks')}`;
     $('.list-snacks').append(`<li class="display-snack-item" data-snackItem='${snacks[snacks.length-1]}'>${snackValue}</liv>`);
     $('.input-snack').val('');
+   
 
   });
+  // Empty input values are being added. Need to figure out how to restrict that
 
-
-  
 
 
 
