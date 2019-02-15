@@ -1,5 +1,6 @@
 .list-snacks {
   font-family: 'Raleway', sans-serif;
+  cursor: pointer;
 }
 
 
@@ -12,8 +13,8 @@ h1 {
 h2 {
   font-family: 'Coustard', serif;
   letter-spacing: 1.5px;
-  position: relative;
-  left: 605px;
+  /*text-align: center;*/
+  margin-left: 36.5%; /*title shifts on diff resolution*/  
 }
 
 .container-snack {
