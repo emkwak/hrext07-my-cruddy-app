@@ -1,3 +1,47 @@
 .list-snacks {
-  list-style-type: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+h1 {
+  font-family: 'Coustard', serif;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Coustard', serif;
+  letter-spacing: 1.5px;
+  position: relative;
+  left: 605px;
+}
+
+.container-snack {
+  position: relative;
+  width: 450px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  border: solid black 2px;
+  margin: auto;
+  
+}
+
+.container-beverage{
+  position: relative;
+  width: 450px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  border: solid black 2px;
+  margin: auto;
+}
+
+.form-snack {
+  text-align: center;
+}
+
+.input-snack-search {
+  position: relative;
+  right: 22px;
 }
