@@ -10,7 +10,7 @@ $(document).ready(function(){
   //var keyData = 'ourKey'; // going to need to make this dynamic?
  
   //SNACK
-  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisps', 'Cookie butter', 'Dolmas','Sweet Plantain Chips', 'Popcorn With Herbs and Spices', 'Milk', 'Roasted Coconut Chips', 'Seasoned Kale Chips'];
+  var snacks = localStorage.setItem('snacks', JSON.stringify(snacks)) ? JSON.parse(localStorage.getItem('snacks')) : ['Brownie Crisp', 'Dried Fruit and Nuts', 'Cookie Butter', 'Mini Churros', 'Sweet Plantain Chips', 'Soft Baked Snickerdoodle Cookies', 'Popcorn With Herbs and Spices', 'Milk', 'Green Tea Mochi', 'Vegan Banana Bread'];
   var snackList = $('.list-snacks');
   var snackParent = snackList.parent();
 
@@ -62,25 +62,13 @@ $(document).ready(function(){
      } 
     }
    localStorage.setItem('snacks', JSON.stringify(storedSnack));
-   $(`li:contains('${snackData}')`).remove() // contains is removing items with the same name and not just removing that one item (BUG)
-   // $( ".list-snacks" ).data(`${snackData}`).remove();
+   $(this).remove();
  });
 
  
 
  // // UPDATE ITEM
- // $('.list-snacks').on('click', '.display-snack-item', function(e) {
- //   console.log(e)
- //   var snackData = e.currentTarget.dataset.snackitem;
- //   for (var i = 0; i < storedSnack.length; i++) {
- //     if (storedSnack[i] === snackData) {
- //       storedSnack.splice(i, 1);
- //     } 
- //    }
- //   localStorage.setItem('snacks', JSON.stringify(storedSnack));
- //   $('list-snacks').val(`${snackData}`, 'new value');
- //   // $(`li:contains('${snackData}')`).remove()
-
+ 
  // });
 
  
